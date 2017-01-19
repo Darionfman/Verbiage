@@ -9,7 +9,7 @@ router.route('/api/article').get(Article.getAllArticles)
 
 router.route('/api/article/:id').get(Article.getOneArticle)
 
-router.route('/api/article/:id').get(Article.editOneArticle)
+router.route('/api/article/:id').put(Article.editOneArticle)
 
 router.route('/api/article/:id').delete(Article.deleteOneArticle)
 
