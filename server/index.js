@@ -39,11 +39,6 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({extended: true}))
 
-  require('./config/passport')(app)
-  app.use((req,res,next) => {
-    // console.log(req.user)
-    return next()
-  })
   // Mount our main router
   app.use('/', routes)
 
