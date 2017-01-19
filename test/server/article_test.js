@@ -55,7 +55,7 @@ describe('Fetches multiple articles', function () {
 
       const articles = response.body
       expect(articles).to.be.an('array')
-      expect(articles.length).to.equal('2')
+      expect(articles.length).to.equal(2)
       expect(articles[1]['id']).to.equal(id2)
     } catch(err) {
       throw new Error(err)
@@ -104,6 +104,34 @@ describe('Updates one article', function () {
       expect(article.title).to.equal('A new One')
       expect(article.author).to.equal('Darion Freeman')
       expect(article.body).to.equal('Hello World')
+    } catch(err) {
+      throw new Error(err)
+    }
+  })
+})
+describe('Deletes an article', function () {
+  it('Deletes an article and returns an id', function * () {
+    try {
+      const response = yield request(app)
+      .delete(`/api/article/${id1}`)
+      .expect(200)
+
+      const id = response.body
+      expect(id).to.be.an('number')
+      expect(id).to.equal(id1)
+    } catch(err) {
+      throw new Error(err)
+    }
+  })
+  it('Should fetch with one less article now', function * () {
+    try {
+      const response = yield request(app)
+      .get('/api/article')
+      .expect(200)
+
+      const articles = response.body
+      expect(articles.length).to.equal(1)
+      expect(articles[0]['id']).to.equal(id2)
     } catch(err) {
       throw new Error(err)
     }
