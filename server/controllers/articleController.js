@@ -39,7 +39,7 @@ module.exports = {
   deleteOneArticle: (req,res) => {
     const id = req.params.id
     Article.delete(id)
-    .then(id => res.sendStatus(200).send(id))
+    .then(id => res.status(200).send(id))
     .catch(err => {
       console.log(`Can not delete article ${err}`)
       res.status(404).send({error: 'Could not find id!?'})
