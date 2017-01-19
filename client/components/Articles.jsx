@@ -38,11 +38,14 @@ export default class Articles extends React.Component {
           <bs.Col md={6}>Author: {post.author}</bs.Col>
         </bs.Row>
         <bs.Row>
-          <bs.Col md={12}>{post.body}</bs.Col>
-          <bs.Col md={12}>
+          <bs.Col md={12}>{post.body.slice(0,50)}</bs.Col>
+          <bs.Col md={6}>
             <bs.Button onClick={() => this.delete(post.id,i)}>
               Delete
             </bs.Button>
+          </bs.Col>
+          <bs.Col md={6}>
+            <a href={`/article/${post.id}`}>View Full Article</a>
           </bs.Col>
         </bs.Row>
         <hr />
